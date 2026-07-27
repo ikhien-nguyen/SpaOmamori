@@ -7,6 +7,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.spa.userservice.dto.request.UserCreationRequest;
 import com.spa.userservice.dto.response.UserCreationResponse;
+import com.spa.userservice.entity.Role;
 import com.spa.userservice.entity.User;
 import com.spa.userservice.exception.AppException;
 import com.spa.userservice.exception.ErrorCode;
@@ -49,12 +50,25 @@ public class UserService {
     protected long REFRESHABLE_DURATION;
     public UserCreationResponse createUser(UserCreationRequest userCreationRequest) {
         User user = userMapper.toUser(userCreationRequest);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         if(userRepository.existsByEmail(user.getEmail())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.CUSTOMER);
         userRepository.save(user);
         return userMapper.toUserResponse(user);
+    }
+
+    public String login(String email, String rawPassword) {
+        var userOpt = userRepository.findByEmail(email);
+        if (userOpt.isEmpty()) throw new AppException(ErrorCode.UNAUTHENTICATED);
+        User user = userOpt.get();
+
+        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
+
+        return generateToken(user);
     }
     private String generateToken(User user) {
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);

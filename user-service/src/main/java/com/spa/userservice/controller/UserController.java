@@ -1,7 +1,9 @@
 package com.spa.userservice.controller;
 
 import com.spa.userservice.dto.request.UserCreationRequest;
+import com.spa.userservice.dto.request.LoginRequest;
 import com.spa.userservice.dto.response.ApiResponse;
+import com.spa.userservice.dto.response.LoginResponse;
 import com.spa.userservice.dto.response.UserCreationResponse;
 import com.spa.userservice.service.UserService;
 import lombok.AccessLevel;
@@ -25,6 +27,14 @@ public class UserController {
     public ApiResponse<UserCreationResponse> createUser(@RequestBody UserCreationRequest userCreationRequest) {
         return ApiResponse.<UserCreationResponse>builder()
                 .result(userService.createUser(userCreationRequest))
+                .build();
+    }
+
+    @PostMapping("/login")
+    public ApiResponse<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        String token = userService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        return ApiResponse.<LoginResponse>builder()
+                .result(new LoginResponse(token))
                 .build();
     }
 
