@@ -5,6 +5,8 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import com.spa.userservice.client.ProfileClient;
+import com.spa.userservice.dto.request.CreateProfileRequest;
 import com.spa.userservice.dto.request.UserCreationRequest;
 import com.spa.userservice.dto.response.UserCreationResponse;
 import com.spa.userservice.entity.Role;
@@ -36,6 +38,7 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
+    ProfileClient profileClient;
 
     @NonFinal
     @Value("${jwt.signerKey}")
@@ -49,13 +52,32 @@ public class UserService {
     @Value("${jwt.refreshable-duration}")
     protected long REFRESHABLE_DURATION;
     public UserCreationResponse createUser(UserCreationRequest userCreationRequest) {
-        User user = userMapper.toUser(userCreationRequest);
-        if(userRepository.existsByEmail(user.getEmail())) {
+        if (userRepository.existsByEmail(userCreationRequest.getEmail())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        User user = userMapper.toUser(userCreationRequest);
+        user.setPassword(passwordEncoder.encode(userCreationRequest.getPassword()));
         user.setRole(Role.CUSTOMER);
         userRepository.save(user);
+
+        try {
+            CreateProfileRequest profileRequest = CreateProfileRequest.builder()
+                    .userId(user.getId())
+                    .dateOfBirth(userCreationRequest.getDateOfBirth())
+                    .gender(userCreationRequest.getGender())
+                    .phone(userCreationRequest.getPhone())
+                    .address(userCreationRequest.getAddress())
+                    .build();
+
+            profileClient.createProfile(profileRequest);
+        } catch (Exception ex) {
+            log.error("Tạo profile thất bại cho userId={}, rollback User. Lỗi: {}",
+                    user.getId(), ex.getMessage());
+            userRepository.deleteById(user.getId());
+            throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
+        }
+
         return userMapper.toUserResponse(user);
     }
 

@@ -24,7 +24,7 @@ public class User {
 
     String password;
 
-    @Column(name = "full_name", unique = true, columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
+    @Column(name = "full_name", columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
     String fullName;
 
     @Enumerated(EnumType.STRING)

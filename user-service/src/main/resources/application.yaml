@@ -1,7 +1,10 @@
 server:
   port: 8080
   servlet:
-    context-path: /omamori
+    context-path: /users
+
+profile-service:
+  url: http://localhost:8081
 
 spring:
   application:
