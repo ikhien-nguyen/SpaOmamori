@@ -1,6 +1,7 @@
 package com.spa.appointmentservice.controller;
 
 import com.spa.appointmentservice.dto.request.AppointmentCreationRequest;
+import com.spa.appointmentservice.dto.request.UpdateAppointmentRequest;
 import com.spa.appointmentservice.dto.request.UpdateAppointmentStatusRequest;
 import com.spa.appointmentservice.dto.response.ApiResponse;
 import com.spa.appointmentservice.dto.response.AppointmentResponse;
@@ -63,6 +64,27 @@ public class AppointmentController {
             @PathVariable String id, @Valid @RequestBody UpdateAppointmentStatusRequest request) {
         return ApiResponse.<AppointmentResponse>builder()
                 .result(appointmentService.updateStatus(id, request))
+                .build();
+    }
+
+    // UC_05 - luong thay the 3a-3d: khach hang sua lich hen dang PENDING cua
+    // chinh minh (doi gio/phong/dich vu/KTV).
+    @PutMapping("/{id}")
+    public ApiResponse<AppointmentResponse> updateAppointment(
+            @PathVariable String id,
+            @RequestParam String customerId,
+            @Valid @RequestBody UpdateAppointmentRequest request) {
+        return ApiResponse.<AppointmentResponse>builder()
+                .result(appointmentService.updateAppointment(id, customerId, request))
+                .build();
+    }
+
+    // UC_05 - luong thay the 3a1-3a4: khach hang huy lich hen cua chinh minh.
+    @PatchMapping("/{id}/cancel")
+    public ApiResponse<AppointmentResponse> cancelAppointment(
+            @PathVariable String id, @RequestParam String customerId) {
+        return ApiResponse.<AppointmentResponse>builder()
+                .result(appointmentService.cancelAppointment(id, customerId))
                 .build();
     }
 }

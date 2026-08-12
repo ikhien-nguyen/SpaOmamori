@@ -1,0 +1,29 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /media
+
+spring:
+  application:
+    name: media
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+# Không có m?c spring.datasource / spring.jpa: service này không có database riêng.
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+media:
+  storage:
+    # Th? m?c l?u file trên ??a, t??ng ??i so v?i working directory lúc ch?y service.
+    # Khi ch?y b?ng Docker, mount volume vào ?úng th? m?c này ?? d? li?u không m?t
+    # khi container b? recreate (VD: volumes: - media-data:/app/uploads).
+    location: uploads
+  # Base URL mà client (Frontend) s? dùng ?? t?i ?nh v?, ?i qua API Gateway
+  # (KHÔNG tr? th?ng vào port 8082) ?? ??ng nh?t domain v?i các API khác.
+  public-base-url: http://localhost:8888/api/omamori/media/files
+  allowed-content-types: image/jpeg,image/png,image/webp

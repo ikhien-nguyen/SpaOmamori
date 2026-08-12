@@ -3,7 +3,7 @@ package com.spa.appointmentservice.service;
 import com.spa.appointmentservice.dto.request.CreateTherapyRecordRequest;
 import com.spa.appointmentservice.dto.response.TherapyRecordResponse;
 import com.spa.appointmentservice.entity.Appointment;
-import com.spa.appointmentservice.entity.AppointmentStatus;
+import com.spa.appointmentservice.entity.TherapyProfile;
 import com.spa.appointmentservice.entity.TherapyRecord;
 import com.spa.appointmentservice.exception.AppException;
 import com.spa.appointmentservice.exception.ErrorCode;
@@ -25,6 +25,8 @@ public class TherapyRecordService {
     TherapyRecordRepository therapyRecordRepository;
     AppointmentRepository appointmentRepository;
     TherapyRecordMapper therapyRecordMapper;
+    TherapyProfileService therapyProfileService;
+    AppointmentService appointmentService; // MOI THEM - de dung chung 1 luat chuyen trang thai + tra phong
 
     public TherapyRecordResponse createRecord(String appointmentId, CreateTherapyRecordRequest request) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
@@ -34,8 +36,13 @@ public class TherapyRecordService {
             throw new AppException(ErrorCode.THERAPY_RECORD_EXISTED);
         }
 
+        // Lay ho so goc cua khach hang, tu dong tao rong neu day la lan dau
+        // (KTV khong phai thao tac tao ho so thu cong truoc)
+        TherapyProfile profile = therapyProfileService.getOrCreateProfile(appointment.getCustomerId());
+
         TherapyRecord record = TherapyRecord.builder()
                 .appointment(appointment)
+                .therapyProfile(profile)
                 .conditionNotes(request.getConditionNotes())
                 .improvementNotes(request.getImprovementNotes())
                 .remainingSessions(request.getRemainingSessions())
@@ -43,9 +50,10 @@ public class TherapyRecordService {
 
         therapyRecordRepository.save(record);
 
-        // Tạo nhật ký trị liệu đồng nghĩa lịch hẹn đã hoàn thành
-        appointment.setStatus(AppointmentStatus.COMPLETED);
-        appointmentRepository.save(appointment);
+        // Chi cho lap nhat ky khi lich hen dang IN_PROGRESS (dung UC_08 -
+        // "sau ca lam viec"), va di qua AppointmentService.completeAppointment
+        // de dam bao khong bo qua validateStatusTransition + tra phong lai.
+        appointmentService.completeAppointment(appointment);
 
         return therapyRecordMapper.toTherapyRecordResponse(record);
     }

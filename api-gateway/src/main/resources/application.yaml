@@ -11,24 +11,38 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      # StripPrefix=2 lo?i b? 2 segment ??u (/api/omamori) tr??c khi forward,
-      # n�n downstream service ch? c?n bi?t context-path c?a ch�nh n�.
+      # StripPrefix=2 loại bỏ 2 segment đầu (/api/omamori) trước khi forward,
+      # nên downstream service chỉ cần biết context-path của chính nó.
+      # uri dùng lb://<spring.application.name của service> (viết hoa/thường đều được)
+      # thay vì localhost:port cứng — Gateway tự tra địa chỉ qua Eureka.
       routes:
         - id: user_service
-          uri: http://localhost:8080
+          uri: lb://users
           predicates:
             - Path=${app.api-prefix}/users/**
           filters:
             - StripPrefix=2
 
         - id: profile_service
-          uri: http://localhost:8081
+          uri: lb://profiles
           predicates:
             - Path=${app.api-prefix}/profiles/**
           filters:
             - StripPrefix=2
 
-      # Tr? l?i r� r�ng thay v� hang khi downstream kh�ng ph?n h?i k?p
+        - id: media_service
+          uri: lb://media
+          predicates:
+            - Path=${app.api-prefix}/media/**
+          filters:
+            - StripPrefix=2
+
+      # Trả lời rõ ràng thay vì hang khi downstream không phản hồi kịp
       httpclient:
         connect-timeout: 3000
         response-timeout: 5s
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

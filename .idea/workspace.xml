@@ -5,65 +5,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd2a08e6-17ef-4a77-bd61-b626b1f24a9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SpaOmamori.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/spa/apigateway/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/spa/apigateway/config/GlobalErrorWebExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/AppointmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/ServiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/TherapyRecordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/AppointmentCreationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/CreateTherapyRecordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/ServiceCreationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/UpdateAppointmentStatusRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/AppointmentResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/ServiceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/TherapyRecordResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/Appointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/AppointmentStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/SpaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/TherapyRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/AppException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/ErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/AppointmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/ServiceMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/TherapyRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/AppointmentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/ServiceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/TherapyRecordRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/AppointmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/ServiceCatalogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/TherapyRecordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/dto/request/CreateProfileRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/dto/request/UpdateProfileRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/dto/response/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/dto/response/ProfileResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/entity/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/entity/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/exception/AppException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/exception/ErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/mapper/ProfileMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/repository/ProfileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile-service/src/main/java/com/spa/profileservice/service/ProfileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/client/ProfileClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/dto/request/CreateProfileRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/UpdateAppointmentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/RoomStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/config/FileStorageConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/controller/MediaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/dto/response/MediaUploadResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/exception/AppException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/exception/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media-service/src/main/java/com/spa/mediaservice/service/MediaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/controller/RoomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/dto/request/RoomCreationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/dto/response/RoomResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/entity/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/entity/RoomStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/entity/RoomType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/exception/AppException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/exception/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/mapper/RoomMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/repository/RoomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/room-service/src/main/java/com/spa/roomservice/service/RoomService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/controller/TreatmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/dto/request/TreatmentCreationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/dto/response/TreatmentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/entity/Treatment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/exception/AppException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/exception/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/mapper/TreatmentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/repository/TreatmentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/treatment-service/src/main/java/com/spa/treatmentservice/service/TreatmentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/dto/response/ProfileResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/AppointmentServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/AppointmentServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/ServiceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/TherapyRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/controller/TherapyRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/AppointmentCreationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/AppointmentCreationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/CreateTherapyRecordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/CreateTherapyRecordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/ServiceCreationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/UpdateAppointmentStatusRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/request/UpdateAppointmentStatusRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/AppointmentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/AppointmentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/ServiceResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/TherapyRecordResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/dto/response/TherapyRecordResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/AppointmentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/AppointmentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/SpaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/TherapyRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/entity/TherapyRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/AppException.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/AppException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/AppointmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/AppointmentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/ServiceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/TherapyRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/mapper/TherapyRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/AppointmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/ServiceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/TherapyRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/repository/TherapyRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/AppointmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/ServiceCatalogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/TherapyRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/java/com/spa/appointmentservice/service/TherapyRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/appointment-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment-service/src/test/java/com/spa/appointmentservice/AppointmentServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/profile-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/dto/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/dto/request/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/client/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/spa/userservice/client/ProfileClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,42 +120,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.ProfileServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/SpaOmamori/appointment-service/src/main/java/com/spa/appointmentservice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MediaServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SpaOmamori/room-service/src/main/java/com/spa/roomservice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SpaOmamori\room-service\src\main\java\com\spa\roomservice" />
+      <recent name="D:\SpaOmamori\treatment-service\src\main\java\com\spa\treatmentservice" />
+      <recent name="D:\SpaOmamori\media-service\src\main\java\com\spa\mediaservice" />
       <recent name="D:\SpaOmamori\appointment-service\src\main\java\com\spa\appointmentservice" />
       <recent name="D:\SpaOmamori\profile-service\src\main\java\com\spa\profileservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spa.roomservice.dto.response" />
+      <recent name="com.spa.treatmentservice.dto.response" />
+      <recent name="com.spa.userservice.dto.response" />
+      <recent name="com.spa.mediaservice.dto.response" />
       <recent name="com.spa.appointmentservice.dto.response" />
-      <recent name="com.spa.profileservice.dto.response" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -151,7 +176,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.apigateway.ApiGatewayApplication" />
@@ -166,9 +191,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CosmeticServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cosmetic-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.cosmeticservice.CosmeticServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MediaServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="media-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.mediaservice.MediaServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProfileServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="profile-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.profileservice.ProfileServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="room-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.roomservice.RoomServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreatmentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="treatment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spa.treatmentservice.TreatmentServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -209,7 +269,13 @@
       <option name="presentableId" value="Default" />
       <updated>1785112764929</updated>
       <workItem from="1785112766201" duration="6450000" />
-      <workItem from="1785296295450" duration="7570000" />
+      <workItem from="1785296295450" duration="10544000" />
+      <workItem from="1785401151061" duration="6735000" />
+      <workItem from="1785474087174" duration="4854000" />
+      <workItem from="1786386715436" duration="697000" />
+      <workItem from="1786431866610" duration="189000" />
+      <workItem from="1786440713096" duration="907000" />
+      <workItem from="1786510317219" duration="3363000" />
     </task>
     <servers />
   </component>

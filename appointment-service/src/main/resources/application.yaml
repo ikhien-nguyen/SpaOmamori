@@ -3,6 +3,12 @@ server:
   servlet:
     context-path: /appointments
 
+treatment-service:
+  url: http://localhost:8083
+
+room-service:
+  url: http://localhost:8084
+
 spring:
   application:
     name: appointment-service

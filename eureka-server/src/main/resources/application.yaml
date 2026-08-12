@@ -1,0 +1,18 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # Standalone mode: b?n thân Eureka Server không t? ??ng ký chính nó và
+    # không c?n fetch registry t? server khác (ch? ch?y 1 instance duy nh?t,
+    # ?? dùng cho ph?m vi ?? án ? không c?n cluster nhi?u node).
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

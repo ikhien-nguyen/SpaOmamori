@@ -24,6 +24,11 @@ public class TherapyRecord {
     @JoinColumn(name = "appointment_id", nullable = false, unique = true)
     Appointment appointment;
 
+    // MOI THEM: lien ket toi ho so goc cua khach hang (HoSoTriLieu)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "therapy_profile_id", nullable = false)
+    TherapyProfile therapyProfile;
+
     @Column(name = "condition_notes", columnDefinition = "TEXT")
     String conditionNotes;
 

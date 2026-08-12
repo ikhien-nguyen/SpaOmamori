@@ -8,9 +8,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 /**
- * Dữ liệu cho use case "Đặt lịch hẹn" (Customer).
- * customerId lấy từ JWT token ở tầng Controller/Gateway, KHÔNG lấy từ client gửi lên
- * (tránh khách hàng tự đặt lịch giùm người khác).
+ * customerId lấy từ JWT token ở tầng Controller, KHÔNG lấy từ client gửi lên.
  */
 @Data
 @Builder
@@ -20,6 +18,9 @@ public class AppointmentCreationRequest {
 
     @NotBlank(message = "Vui lòng chọn dịch vụ")
     private String serviceId;
+
+    @NotBlank(message = "Vui lòng chọn phòng")
+    private String roomId;
 
     private String therapistId; // có thể chưa chọn, Admin phân công sau
 

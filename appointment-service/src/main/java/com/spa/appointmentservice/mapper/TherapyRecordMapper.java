@@ -9,5 +9,6 @@ import org.mapstruct.Mapping;
 public interface TherapyRecordMapper {
 
     @Mapping(target = "appointmentId", source = "appointment.id")
+    @Mapping(target = "therapyProfileId", source = "therapyProfile.id")
     TherapyRecordResponse toTherapyRecordResponse(TherapyRecord therapyRecord);
 }

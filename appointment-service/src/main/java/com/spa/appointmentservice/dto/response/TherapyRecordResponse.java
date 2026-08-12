@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class TherapyRecordResponse {
     private String id;
     private String appointmentId;
+    private String therapyProfileId;
     private String conditionNotes;
     private String improvementNotes;
     private Integer remainingSessions;

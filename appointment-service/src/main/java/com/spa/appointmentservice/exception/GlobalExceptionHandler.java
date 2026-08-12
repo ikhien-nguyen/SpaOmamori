@@ -1,6 +1,6 @@
 package com.spa.appointmentservice.exception;
 
-import com.spa.userservice.dto.response.ApiResponse;
+import com.spa.appointmentservice.dto.response.ApiResponse;
 import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = AccessDeniedException.class)
     ResponseEntity<ApiResponse> handlingAccessDeniedException(AccessDeniedException exception) {
-        ErrorCode errorCode = ErrorCode.UNAUTHORIZED;
+        ErrorCode errorCode = ErrorCode.UNCATEGORIZED_EXCEPTION;
 
         return ResponseEntity.status(errorCode.getStatusCode())
                 .body(ApiResponse.builder()
