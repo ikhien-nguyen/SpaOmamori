@@ -1,7 +1,9 @@
 package com.spa.userservice.mapper;
 
+import com.spa.userservice.dto.request.StaffCreationRequest;
 import com.spa.userservice.dto.request.UserCreationRequest;
 import com.spa.userservice.dto.response.UserCreationResponse;
+import com.spa.userservice.dto.response.UserResponse;
 import com.spa.userservice.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -32,4 +34,16 @@ public interface UserMapper {
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "role", ignore = true)
     void updateUser(@MappingTarget User user, UserCreationRequest request);
+
+    // role trong StaffCreationRequest là String ("STAFF"/"ADMIN") do Admin nhập,
+    // set thủ công ở Service sau khi validate — KHÔNG map trực tiếp ở đây để
+    // tránh map nhầm String -> enum khi giá trị không hợp lệ đã lọt qua @Pattern.
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "password", ignore = true)
+    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "active", ignore = true)
+    User toUser(StaffCreationRequest request);
+
+    // Tên khác toUserResponse() vì Java không cho overload chỉ khác kiểu trả về.
+    UserResponse toUserListItem(User user);
 }

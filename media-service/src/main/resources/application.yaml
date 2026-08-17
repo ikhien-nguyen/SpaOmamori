@@ -27,3 +27,6 @@ media:
   # (KHÔNG tr? th?ng vào port 8082) ?? ??ng nh?t domain v?i các API khác.
   public-base-url: http://localhost:8888/api/omamori/media/files
   allowed-content-types: image/jpeg,image/png,image/webp
+
+jwt:
+  signerKey: "${JWT_SIGNER_KEY:1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij}"

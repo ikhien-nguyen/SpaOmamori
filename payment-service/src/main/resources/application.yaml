@@ -1,0 +1,58 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /payments
+
+# appointment-service HIEN TAI CHUA dang ky Eureka that su (thieu dependency
+# spring-cloud-starter-netflix-eureka-client trong pom.xml cua no - xem ghi
+# chu rieng). Vi vay payment-service tam thoi phai goi thang qua url nay,
+# dung dung CONG THAT la 8082 (khac voi appointment-service.yaml dang khai
+# bao SAI cho room/treatment-service). Sau khi them dependency Eureka cho
+# appointment-service, co the xoa dong url ben duoi de dung discovery qua
+# Eureka thay vi hard-code.
+appointment-service:
+  url: http://localhost:8082
+
+# Dang ky tai khoan merchant sandbox tai https://sandbox.vnpayment.vn/devreg/
+# de lay tmn-code + hash-secret that. return-url la noi trinh duyet khach
+# hang duoc dua ve sau khi thanh toan (chi de hien thi, KHONG dung de xac
+# nhan don hang). IPN URL (server-to-server, moi cho XAC NHAN THAT) khong
+# khai bao o day - phai vao trang quan tri merchant sandbox de khai bao rieng,
+# vi VNPay khong nhan IPN URL nhu 1 tham so gui kem request thanh toan.
+vnpay:
+  tmn-code: "8EM7MK9Z"
+  hash-secret: "RIUKGGS7LA415S2M27B662IVUAG7W6LD"
+  pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+  return-url: http://localhost:8086/payments/vnpay/return
+
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: "jdbc:mysql://localhost:3306/omamori_payment"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false   # phải khớp cosmetic-service (use.type.headers: false)
+
+cosmetic:
+  kafka:
+    invoice-paid-topic: invoice-paid   # trùng tên topic cosmetic-service đang lắng nghe
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  signerKey: "${JWT_SIGNER_KEY:1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij}"

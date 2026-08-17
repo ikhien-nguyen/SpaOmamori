@@ -29,4 +29,10 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     Role role;
+
+    // Trạng thái tài khoản: true = đang hoạt động, false = đã bị Admin vô hiệu hóa.
+    // Builder.Default để các bản ghi tạo qua @Builder mặc định active=true nếu không set.
+    @Builder.Default
+    @Column(name = "active", nullable = false)
+    boolean active = true;
 }
