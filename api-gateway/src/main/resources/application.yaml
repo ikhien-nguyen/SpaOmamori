@@ -37,6 +37,20 @@ spring:
           filters:
             - StripPrefix=2
 
+        - id: treatment_service
+          uri: lb://treatment-service
+          predicates:
+            - Path=${app.api-prefix}/treatments/**
+          filters:
+            - StripPrefix=2
+
+        - id: cosmetic_service
+          uri: lb://cosmetics
+          predicates:
+            - Path=${app.api-prefix}/cosmetics/**
+          filters:
+            - StripPrefix=2
+
       # Trả lời rõ ràng thay vì hang khi downstream không phản hồi kịp
       httpclient:
         connect-timeout: 3000
