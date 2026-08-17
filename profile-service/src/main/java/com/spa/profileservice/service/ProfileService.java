@@ -4,10 +4,12 @@ import com.spa.profileservice.dto.request.CreateProfileRequest;
 import com.spa.profileservice.dto.request.UpdateProfileRequest;
 import com.spa.profileservice.dto.response.ProfileResponse;
 import com.spa.profileservice.entity.Profile;
+import com.spa.profileservice.entity.Therapist;
 import com.spa.profileservice.exception.AppException;
 import com.spa.profileservice.exception.ErrorCode;
 import com.spa.profileservice.mapper.ProfileMapper;
 import com.spa.profileservice.repository.ProfileRepository;
+import com.spa.profileservice.repository.TherapistRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,8 +24,10 @@ public class ProfileService {
 
     ProfileRepository profileRepository;
     ProfileMapper profileMapper;
+    TherapistRepository therapistRepository;
 
     public ProfileResponse createProfile(CreateProfileRequest request) {
+
         if (profileRepository.existsByUserId(request.getUserId())) {
             throw new AppException(ErrorCode.PROFILE_EXISTED);
         }
@@ -31,19 +35,38 @@ public class ProfileService {
         Profile profile = profileMapper.toProfile(request);
         profileRepository.save(profile);
 
+        if ("THERAPIST".equalsIgnoreCase(request.getRole())) {
+
+            if (therapistRepository.existsByUserId(request.getUserId())) {
+                throw new AppException(ErrorCode.PROFILE_EXISTED);
+            }
+
+            Therapist therapist = Therapist.builder()
+                    .userId(request.getUserId())
+                    .active(true)
+                    .build();
+
+            therapistRepository.save(therapist);
+        }
+
         return profileMapper.toProfileResponse(profile);
     }
 
     public ProfileResponse getProfileByUserId(String userId) {
         Profile profile = profileRepository.findByUserId(userId)
-                .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_EXISTED));
+                .orElseThrow(() ->
+                        new AppException(ErrorCode.PROFILE_NOT_EXISTED));
 
         return profileMapper.toProfileResponse(profile);
     }
 
-    public ProfileResponse updateProfile(String userId, UpdateProfileRequest request) {
+    public ProfileResponse updateProfile(
+            String userId,
+            UpdateProfileRequest request) {
+
         Profile profile = profileRepository.findByUserId(userId)
-                .orElseThrow(() -> new AppException(ErrorCode.PROFILE_NOT_EXISTED));
+                .orElseThrow(() ->
+                        new AppException(ErrorCode.PROFILE_NOT_EXISTED));
 
         profileMapper.updateProfile(profile, request);
         profileRepository.save(profile);

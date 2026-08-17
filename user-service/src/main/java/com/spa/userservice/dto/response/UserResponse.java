@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * Response cho Admin xem danh sách/chi tiết người dùng (UC_09).
  * Không có trường password — UserCreationResponse trả cả password là rò rỉ
@@ -21,4 +23,5 @@ public class UserResponse {
     private String email;
     private Role role;
     private boolean active;
+    private LocalDateTime createdAt;
 }

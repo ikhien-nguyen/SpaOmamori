@@ -12,6 +12,7 @@ public class TherapyRecordResponse {
     private String id;
     private String appointmentId;
     private String therapyProfileId;
+    private String technicianId;
     private String conditionNotes;
     private String improvementNotes;
     private Integer remainingSessions;

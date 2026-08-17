@@ -21,6 +21,11 @@ public class CreateProfileRequest {
     @NotBlank(message = "userId không được để trống")
     private String userId;
 
+    @NotBlank(message = "Họ tên không được để trống")
+    private String fullName;
+
+    private String role;
+
     @NotNull(message = "Ngày sinh không được để trống")
     @Past(message = "Ngày sinh phải là một ngày trong quá khứ")
     private LocalDate dateOfBirth;

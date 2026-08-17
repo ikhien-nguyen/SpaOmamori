@@ -23,6 +23,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -68,7 +69,15 @@ public class InvoiceService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         invoice.setTotalAmount(totalAmount);
 
-        invoiceRepository.save(invoice);
+        // existsByAppointmentId() o tren chi chan duoc phan lon truong hop;
+        // van co the co race condition khi 2 request tao hoa don cung luc
+        // cho 1 lich hen. Unique constraint o DB (appointment_id) la lop
+        // bao ve cuoi cung - bat loi vi pham va tra ve dung ErrorCode cu.
+        try {
+            invoiceRepository.save(invoice);
+        } catch (DataIntegrityViolationException e) {
+            throw new AppException(ErrorCode.INVOICE_ALREADY_EXISTS_FOR_APPOINTMENT);
+        }
         return invoiceMapper.toInvoiceResponse(invoice);
     }
 
@@ -175,25 +184,21 @@ public class InvoiceService {
         }
 
         for (InvoiceItemRequest item : cosmeticItems) {
-            // Neu co cosmeticId -> xac thuc gia/ten that tu cosmetic-service,
-            // KHONG tin client tu goi len (tranh gia mao gia). Neu de trong
-            // (san pham ban thu chua len danh muc) thi van cho phep nhap tay
-            // nhu truoc, nhung nen sieet lai o UI/nghiep vu that.
-            String itemName = item.getName();
-            BigDecimal unitPrice = item.getUnitPrice();
-
-            if (item.getCosmeticId() != null && !item.getCosmeticId().isBlank()) {
-                CosmeticResponse cosmetic = fetchCosmetic(item.getCosmeticId());
-                itemName = cosmetic.getName();
-                unitPrice = cosmetic.getPrice();
+            // cosmeticId bat buoc (dung ERD: MaMatHang khong duoc null) - luon
+            // lay gia/ten that tu cosmetic-service, KHONG tin client tu goi
+            // len (tranh gia mao gia). Da bo nhanh "nhap tay thu cong" truoc
+            // day vi vi pham rang buoc NOT NULL cua ERD.
+            if (item.getCosmeticId() == null || item.getCosmeticId().isBlank()) {
+                throw new AppException(ErrorCode.COSMETIC_ID_REQUIRED);
             }
 
-            BigDecimal subtotal = unitPrice.multiply(BigDecimal.valueOf(item.getQuantity()));
+            CosmeticResponse cosmetic = fetchCosmetic(item.getCosmeticId());
+            BigDecimal subtotal = cosmetic.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
             invoice.addItem(InvoiceItem.builder()
                     .itemType(InvoiceItemType.COSMETIC)
                     .referenceId(item.getCosmeticId())
-                    .itemName(itemName)
-                    .unitPrice(unitPrice)
+                    .itemName(cosmetic.getName())
+                    .unitPrice(cosmetic.getPrice())
                     .quantity(item.getQuantity())
                     .subtotal(subtotal)
                     .build());

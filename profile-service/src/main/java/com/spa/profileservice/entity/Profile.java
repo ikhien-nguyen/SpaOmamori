@@ -25,6 +25,14 @@ public class Profile {
     @Column(name = "user_id", unique = true, nullable = false)
     String userId;
 
+    // Dung ERD: ThongTinCaNhan.HoTen (bat buoc). Ban ghi goc van o
+    // User.fullName (user-service) - truong nay la BAN SAO dong bo tai thoi
+    // diem tao profile / cap nhat, phuc vu cac API doc theo dung cau truc
+    // ERD (ThongTinCaNhan co san HoTen) ma khong phai goi cheo sang
+    // user-service moi lan doc.
+    @Column(name = "full_name", nullable = false)
+    String fullName;
+
     @Column(name = "date_of_birth")
     LocalDate dateOfBirth;
 

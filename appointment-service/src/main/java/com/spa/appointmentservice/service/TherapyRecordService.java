@@ -26,7 +26,7 @@ public class TherapyRecordService {
     AppointmentRepository appointmentRepository;
     TherapyRecordMapper therapyRecordMapper;
     TherapyProfileService therapyProfileService;
-    AppointmentService appointmentService; // MOI THEM - de dung chung 1 luat chuyen trang thai + tra phong
+    AppointmentService appointmentService; // de dung chung 1 luat chuyen trang thai + tra phong
 
     public TherapyRecordResponse createRecord(String appointmentId, CreateTherapyRecordRequest request) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
@@ -43,6 +43,9 @@ public class TherapyRecordService {
         TherapyRecord record = TherapyRecord.builder()
                 .appointment(appointment)
                 .therapyProfile(profile)
+                // Chốt technicianId từ chính lịch hẹn tại thời điểm ghi nhật ký (xem
+                // giải thích ở entity vì sao không để MapStruct/JPA tự suy ra lại sau này).
+                .technicianId(appointment.getTherapistId())
                 .conditionNotes(request.getConditionNotes())
                 .improvementNotes(request.getImprovementNotes())
                 .remainingSessions(request.getRemainingSessions())

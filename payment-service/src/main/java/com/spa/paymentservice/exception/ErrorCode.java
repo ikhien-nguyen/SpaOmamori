@@ -16,6 +16,7 @@ public enum ErrorCode {
     APPOINTMENT_NOT_COMPLETED(1055, "Lịch hẹn chưa hoàn thành, không thể lập hóa đơn", HttpStatus.BAD_REQUEST),
     VNPAY_INVOICE_NOT_PENDING(1056, "Hóa đơn không ở trạng thái chờ thanh toán, không thể tạo lại giao dịch VNPay", HttpStatus.BAD_REQUEST),
     COSMETIC_NOT_EXISTED(1057, "Không tìm thấy sản phẩm mỹ phẩm", HttpStatus.NOT_FOUND),
+    COSMETIC_ID_REQUIRED(1058, "Mỗi dòng mỹ phẩm trong hóa đơn phải gắn với một sản phẩm trong danh mục", HttpStatus.BAD_REQUEST),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

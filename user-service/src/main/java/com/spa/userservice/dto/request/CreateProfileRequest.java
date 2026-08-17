@@ -17,6 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CreateProfileRequest {
     private String userId; // chính là User.id (UUID) vừa tạo bên User Service
+    private String fullName; // dong bo tu User.fullName, dung ERD ThongTinCaNhan.HoTen
+    private String role;
     private LocalDate dateOfBirth;
     private String gender;
     private String phone;

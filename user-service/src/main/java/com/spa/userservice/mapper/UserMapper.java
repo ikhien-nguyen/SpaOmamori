@@ -1,6 +1,6 @@
 package com.spa.userservice.mapper;
 
-import com.spa.userservice.dto.request.StaffCreationRequest;
+import com.spa.userservice.dto.request.TherapistCreationRequest;
 import com.spa.userservice.dto.request.UserCreationRequest;
 import com.spa.userservice.dto.response.UserCreationResponse;
 import com.spa.userservice.dto.response.UserResponse;
@@ -42,7 +42,7 @@ public interface UserMapper {
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "active", ignore = true)
-    User toUser(StaffCreationRequest request);
+    User toUser(TherapistCreationRequest request);
 
     // Tên khác toUserResponse() vì Java không cho overload chỉ khác kiểu trả về.
     UserResponse toUserListItem(User user);

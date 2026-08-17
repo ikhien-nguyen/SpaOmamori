@@ -1,6 +1,6 @@
 package com.spa.userservice.controller;
 
-import com.spa.userservice.dto.request.StaffCreationRequest;
+import com.spa.userservice.dto.request.TherapistCreationRequest;
 import com.spa.userservice.dto.response.ApiResponse;
 import com.spa.userservice.dto.response.UserCreationResponse;
 import com.spa.userservice.dto.response.UserResponse;
@@ -30,9 +30,9 @@ public class UserManagementController {
 
     UserService userService;
 
-    // Admin tạo tài khoản Kỹ thuật viên hoặc Admin khác.
-    @PostMapping("/staff")
-    public ApiResponse<UserCreationResponse> createStaff(@Valid @RequestBody StaffCreationRequest request) {
+    // Admin tạo tài khoản Kỹ thuật viên .
+    @PostMapping("/therapists ")
+    public ApiResponse<UserCreationResponse> createStaff(@Valid @RequestBody TherapistCreationRequest request) {
         return ApiResponse.<UserCreationResponse>builder()
                 .result(userService.createStaffUser(request))
                 .build();

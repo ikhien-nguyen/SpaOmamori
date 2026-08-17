@@ -30,7 +30,10 @@ public class InvoiceItem {
 
     // serviceId/roomId/cosmeticId ben service tuong ung - de tra cuu lai neu
     // can, khong phai FK that (khac database).
-    @Column(name = "reference_id")
+    // Dung ERD (MaMatHang khong co dau N => bat buoc). Truoc day cho phep
+    // null de ho tro "san pham ban thu chua len danh muc" - da bo huong do,
+    // xem InvoiceService.attachCosmeticItems + InvoiceItemRequest.
+    @Column(name = "reference_id", nullable = false)
     String referenceId;
 
     // Snapshot ten tai thoi diem lap hoa don - khong doi du sau nay gia/ten

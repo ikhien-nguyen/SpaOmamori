@@ -28,6 +28,11 @@ public class Cosmetic {
     @Column(name = "manufacturer", columnDefinition = "VARCHAR(255) COLLATE utf8mb4_unicode_ci")
     String manufacturer;
 
+    // Bo sung theo ERD: MyPham.DonViTinh - truoc day entity nay khong co
+    // cot don vi tinh nao (VD: "chai", "hop", "tuyp").
+    @Column(name = "unit", length = 50)
+    String unit;
+
     @Column(name = "price", precision = 12, scale = 2)
     BigDecimal price;
 

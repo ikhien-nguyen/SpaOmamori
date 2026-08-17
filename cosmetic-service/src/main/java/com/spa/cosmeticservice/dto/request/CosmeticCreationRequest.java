@@ -21,6 +21,9 @@ public class CosmeticCreationRequest {
     @NotBlank(message = "Nhà sản xuất không được để trống")
     private String manufacturer;
 
+    // Dung ERD: MyPham.DonViTinh (VD: "chai", "hop", "tuyp")
+    private String unit;
+
     @NotNull(message = "Giá bán không được để trống")
     @DecimalMin(value = "0.0", inclusive = false, message = "Giá bán phải lớn hơn 0")
     private BigDecimal price;

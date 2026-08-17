@@ -30,7 +30,11 @@ public class Invoice {
 
     // Lien ket logic sang Appointment Service - null neu day la hoa don
     // ban le my pham, khong gan voi lich hen nao.
-    @Column(name = "appointment_id")
+    // unique = true: dung ERD (MaLichHen co dau U) - 1 lich hen toi da 1 hoa
+    // don. Truoc day chi check unique o tang Service
+    // (existsByAppointmentId), khong co rang buoc that o DB nen van co the
+    // bi duplicate khi 2 request tao hoa don cung luc cho 1 lich hen.
+    @Column(name = "appointment_id", unique = true)
     String appointmentId;
 
     @Enumerated(EnumType.STRING)

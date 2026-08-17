@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -35,4 +37,14 @@ public class User {
     @Builder.Default
     @Column(name = "active", nullable = false)
     boolean active = true;
+
+    // Bo sung theo ERD: TaiKhoan.NgayTao (bat buoc). Truoc day bang User
+    // khong co cot nay.
+    @Column(name = "created_at", updatable = false, nullable = false)
+    LocalDateTime createdAt;
+
+    @PrePersist
+    void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

@@ -7,7 +7,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.spa.userservice.client.ProfileClient;
 import com.spa.userservice.dto.request.CreateProfileRequest;
-import com.spa.userservice.dto.request.StaffCreationRequest;
+import com.spa.userservice.dto.request.TherapistCreationRequest;
 import com.spa.userservice.dto.request.UserCreationRequest;
 import com.spa.userservice.dto.response.UserCreationResponse;
 import com.spa.userservice.dto.response.UserResponse;
@@ -68,6 +68,8 @@ public class UserService {
         try {
             CreateProfileRequest profileRequest = CreateProfileRequest.builder()
                     .userId(user.getId())
+                    .fullName(user.getFullName())
+                    .role(user.getRole().name())
                     .dateOfBirth(userCreationRequest.getDateOfBirth())
                     .gender(userCreationRequest.getGender())
                     .phone(userCreationRequest.getPhone())
@@ -92,7 +94,7 @@ public class UserService {
      * UC_09 - Admin tạo tài khoản Kỹ thuật viên (STAFF) hoặc Admin khác.
      * Khác createUser(): role do Admin chỉ định thay vì hard-code CUSTOMER.
      */
-    public UserCreationResponse createStaffUser(StaffCreationRequest request) {
+    public UserCreationResponse createStaffUser(TherapistCreationRequest request) {
         Role role;
         try {
             role = Role.valueOf(request.getRole());
@@ -117,6 +119,8 @@ public class UserService {
         try {
             CreateProfileRequest profileRequest = CreateProfileRequest.builder()
                     .userId(user.getId())
+                    .fullName(user.getFullName())
+                    .role(user.getRole().name())
                     .dateOfBirth(request.getDateOfBirth())
                     .gender(request.getGender())
                     .phone(request.getPhone())
