@@ -1,7 +1,9 @@
 package com.spa.treatmentservice.configuration;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,15 +11,49 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import java.util.regex.Pattern;
+
+/**
+ * RequestMatcher that combines HTTP method check with UUID pattern matching.
+ */
+class HttpMethodUuidRequestMatcher implements RequestMatcher {
+    private final HttpMethod httpMethod;
+    private final Pattern uuidPattern;
+
+    public HttpMethodUuidRequestMatcher(HttpMethod httpMethod) {
+        this.httpMethod = httpMethod;
+        // UUID pattern: 550e8400-e29b-41d4-a716-446655440000
+        this.uuidPattern = Pattern.compile(
+                "^/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$");
+    }
+
+    @Override
+    public boolean matches(HttpServletRequest request) {
+        if (httpMethod != null && httpMethod != HttpMethod.valueOf(request.getMethod())) {
+            return false;
+        }
+        String path = request.getServletPath();
+        return uuidPattern.matcher(path).matches();
+    }
+}
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = {
-        "/internal/**",
-    };
+    // Within servlet context /treatments, the controller is mapped to:
+    // GET /          -> getAllTreatments()
+    // GET /{id}      -> getTreatment(id) where id is UUID
+    // GET /internal/{id} -> getTreatmentInternal(id)
+    // POST /         -> createTreatment()
+    // DELETE /{id}   -> deactivateTreatment(id)
+    //
+    // Public catalog endpoints: GET / and GET /{UUID}
+    // Internal endpoints: GET /internal/** (kept permitted for appointment-service)
+    // All writes require authentication.
 
     private final CustomJwtDecoder customJwtDecoder;
 
@@ -27,8 +63,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        RequestMatcher uuidDetailMatcher = new HttpMethodUuidRequestMatcher(HttpMethod.GET);
+
         httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
+                // Public catalog: GET / (root) and GET /{UUID} (detail)
+                .requestMatchers(HttpMethod.GET, "/").permitAll()
+                .requestMatchers(uuidDetailMatcher).permitAll()
+                // Internal endpoints for appointment-service (keep existing behavior)
+                .requestMatchers("/internal/**").permitAll()
+                // All other requests require authentication
                 .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
