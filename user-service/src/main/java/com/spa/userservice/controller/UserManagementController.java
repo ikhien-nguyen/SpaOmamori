@@ -31,7 +31,7 @@ public class UserManagementController {
     UserService userService;
 
     // Admin tạo tài khoản Kỹ thuật viên .
-    @PostMapping("/therapists ")
+    @PostMapping("/therapists")
     public ApiResponse<UserCreationResponse> createStaff(@Valid @RequestBody TherapistCreationRequest request) {
         return ApiResponse.<UserCreationResponse>builder()
                 .result(userService.createStaffUser(request))
