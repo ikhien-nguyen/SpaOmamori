@@ -88,6 +88,18 @@ public class AppointmentService {
         return appointmentMapper.toAppointmentResponse(appointment);
     }
 
+    /**
+     * Self-service: customer fetches their own appointment by id. Throws
+     * APPOINTMENT_ACCESS_DENIED if the appointment does not belong to the
+     * caller's customerId (derived from JWT subject upstream).
+     */
+    public AppointmentResponse getMyAppointmentById(String customerId, String id) {
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.APPOINTMENT_NOT_EXISTED));
+        requireOwnership(appointment, customerId);
+        return appointmentMapper.toAppointmentResponse(appointment);
+    }
+
     // UC_05 - luong thay the 3a-3d: khach hang sua lich hen cua chinh minh,
     // chi duoc phep khi con o trang thai PENDING. Phai kiem tra lai trung
     // lich (tru chinh no) vi gio/phong/KTV co the da doi.

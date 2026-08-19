@@ -15,6 +15,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    // Service-to-service ("internal") endpoints are reachable only via direct
+    // Feign calls inside the cluster — the API Gateway 404s any /internal/**
+    // request under a routed prefix, so these cannot be hit by external
+    // clients. Mirrors the /internal/** permit-all arrangement already used
+    // by treatment-service and room-service.
+    private static final String[] PUBLIC_ENDPOINTS = {
+            "/internal/**",
+    };
+
 
     private final CustomJwtDecoder customJwtDecoder;
 
@@ -25,6 +34,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request -> request
+                .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                 .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer

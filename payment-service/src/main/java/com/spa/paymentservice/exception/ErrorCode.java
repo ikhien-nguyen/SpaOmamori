@@ -17,6 +17,11 @@ public enum ErrorCode {
     VNPAY_INVOICE_NOT_PENDING(1056, "Hóa đơn không ở trạng thái chờ thanh toán, không thể tạo lại giao dịch VNPay", HttpStatus.BAD_REQUEST),
     COSMETIC_NOT_EXISTED(1057, "Không tìm thấy sản phẩm mỹ phẩm", HttpStatus.NOT_FOUND),
     COSMETIC_ID_REQUIRED(1058, "Mỗi dòng mỹ phẩm trong hóa đơn phải gắn với một sản phẩm trong danh mục", HttpStatus.BAD_REQUEST),
+    PAYMENT_ACCESS_DENIED(
+            1059,
+            "Bạn không có quyền thực hiện thao tác thanh toán này",
+            HttpStatus.FORBIDDEN
+    ),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {

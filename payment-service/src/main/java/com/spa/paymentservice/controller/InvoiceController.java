@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class InvoiceController {
     // UC_11 - buoc 1-5: Admin lap hoa don (tu lich hen da hoan thanh va/hoac
     // ban le my pham).
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<InvoiceResponse> createInvoice(@Valid @RequestBody CreateInvoiceRequest request) {
         return ApiResponse.<InvoiceResponse>builder()
                 .result(invoiceService.createInvoice(request))
@@ -40,6 +42,7 @@ public class InvoiceController {
 
     // UC_11 - buoc 6-7: Admin xac nhan thanh toan.
     @PatchMapping("/{id}/confirm-payment")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<InvoiceResponse> confirmPayment(
             @PathVariable String id, @Valid @RequestBody ConfirmPaymentRequest request) {
         return ApiResponse.<InvoiceResponse>builder()
@@ -48,6 +51,7 @@ public class InvoiceController {
     }
 
     @PatchMapping("/{id}/cancel")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<InvoiceResponse> cancelInvoice(@PathVariable String id) {
         return ApiResponse.<InvoiceResponse>builder()
                 .result(invoiceService.cancelInvoice(id))
@@ -55,6 +59,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<InvoiceResponse> getInvoice(@PathVariable String id) {
         return ApiResponse.<InvoiceResponse>builder()
                 .result(invoiceService.getInvoiceById(id))
@@ -63,6 +68,7 @@ public class InvoiceController {
 
     // Use case khach hang tra cuu lich su hoa don/giao dich cua chinh minh.
     @GetMapping("/customer/{customerId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<List<InvoiceResponse>> getByCustomer(@PathVariable String customerId) {
         return ApiResponse.<List<InvoiceResponse>>builder()
                 .result(invoiceService.getInvoicesByCustomer(customerId))
@@ -72,6 +78,7 @@ public class InvoiceController {
     // Khach hang bam "Thanh toan online" tren hoa don -> BE tra ve URL VNPay,
     // FE redirect trinh duyet/webview toi day de khach quet QR hoac nhap the.
     @PostMapping("/{id}/vnpay/create")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<VnPayPaymentUrlResponse> createVnPayPaymentUrl(
             @PathVariable String id, HttpServletRequest httpRequest) {
         return ApiResponse.<VnPayPaymentUrlResponse>builder()
