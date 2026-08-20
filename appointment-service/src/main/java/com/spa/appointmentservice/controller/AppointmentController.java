@@ -35,7 +35,7 @@ public class AppointmentController {
      * CUSTOMER must use GET /appointments/me instead.
      */
     @GetMapping("/customer/{customerId}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'THERAPIST')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<List<AppointmentResponse>> getByCustomer(@PathVariable String customerId) {
         return ApiResponse.<List<AppointmentResponse>>builder()
                 .result(appointmentService.getAppointmentsByCustomer(customerId))
@@ -43,7 +43,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/therapist/{therapistId}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'THERAPIST')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<List<AppointmentResponse>> getByTherapist(@PathVariable String therapistId) {
         return ApiResponse.<List<AppointmentResponse>>builder()
                 .result(appointmentService.getAppointmentsByTherapist(therapistId))
@@ -55,7 +55,7 @@ public class AppointmentController {
      * which enforces ownership against the JWT subject.
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'THERAPIST')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<AppointmentResponse> getById(@PathVariable String id) {
         return ApiResponse.<AppointmentResponse>builder()
                 .result(appointmentService.getAppointmentById(id))
@@ -68,7 +68,7 @@ public class AppointmentController {
      * (PENDING) and cancel their own PENDING/CONFIRMED appointment.
      */
     @PatchMapping("/{id}/status")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'THERAPIST')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ApiResponse<AppointmentResponse> updateStatus(
             @PathVariable String id, @Valid @RequestBody UpdateAppointmentStatusRequest request) {
         return ApiResponse.<AppointmentResponse>builder()

@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +29,18 @@ public class TherapyRecordService {
     TherapyProfileService therapyProfileService;
     AppointmentService appointmentService; // de dung chung 1 luat chuyen trang thai + tra phong
 
+    @Transactional
     public TherapyRecordResponse createRecord(String appointmentId, CreateTherapyRecordRequest request) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new AppException(ErrorCode.APPOINTMENT_NOT_EXISTED));
+
+        if (!"IN_PROGRESS".equals(
+                String.valueOf(appointment.getStatus())
+        )) {
+            throw new AppException(
+                    ErrorCode.APPOINTMENT_NOT_IN_PROGRESS
+            );
+        }
 
         if (therapyRecordRepository.existsByAppointmentId(appointmentId)) {
             throw new AppException(ErrorCode.THERAPY_RECORD_EXISTED);

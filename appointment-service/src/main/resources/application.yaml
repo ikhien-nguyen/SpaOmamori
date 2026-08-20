@@ -9,6 +9,10 @@ treatment-service:
 room-service:
   url: http://localhost:8085
 
+
+profile-service:
+  url: http://localhost:8081
+
 spring:
   application:
     name: appointment-service
