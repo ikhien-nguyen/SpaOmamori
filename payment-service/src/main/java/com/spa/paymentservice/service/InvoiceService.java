@@ -121,7 +121,23 @@ public class InvoiceService {
                 .orElseThrow(() -> new AppException(ErrorCode.INVOICE_NOT_EXISTED));
         return invoiceMapper.toInvoiceResponse(invoice);
     }
+public InvoiceResponse getInvoiceForCustomer(
+        String id,
+        String customerId
+) {
+    Invoice invoice = invoiceRepository.findById(id)
+            .orElseThrow(() ->
+                    new AppException(ErrorCode.INVOICE_NOT_EXISTED)
+            );
 
+    if (!invoice.getCustomerId().equals(customerId)) {
+        throw new AppException(
+                ErrorCode.PAYMENT_ACCESS_DENIED
+        );
+    }
+
+    return invoiceMapper.toInvoiceResponse(invoice);
+}
     // Khach hang tu thanh toan online: sinh URL VNPay (chua QR + cac hinh
     // thuc thanh toan khac) cho hoa don dang "Cho thanh toan".
     public VnPayPaymentUrlResponse createVnPayPaymentUrl(String invoiceId, HttpServletRequest httpRequest) {

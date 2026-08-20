@@ -1,5 +1,6 @@
 package com.spa.paymentservice.controller;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import com.spa.paymentservice.dto.request.ConfirmPaymentRequest;
 import com.spa.paymentservice.dto.request.CreateInvoiceRequest;
 import com.spa.paymentservice.dto.response.ApiResponse;
@@ -74,6 +75,33 @@ public class InvoiceController {
                 .result(invoiceService.getInvoicesByCustomer(customerId))
                 .build();
     }
+// Customer xem danh sách hóa đơn/giao dịch của chính mình.
+// customerId lấy từ JWT subject, không nhận từ client.
+@GetMapping("/me")
+@PreAuthorize("hasAuthority('CUSTOMER')")
+public ApiResponse<List<InvoiceResponse>> getMyInvoices(
+        @AuthenticationPrincipal Jwt jwt) {
+
+    String customerId = jwt.getSubject();
+
+    return ApiResponse.<List<InvoiceResponse>>builder()
+            .result(invoiceService.getInvoicesByCustomer(customerId))
+            .build();
+}
+
+// Customer chỉ được xem chi tiết hóa đơn thuộc về chính mình.
+@GetMapping("/me/{id}")
+@PreAuthorize("hasAuthority('CUSTOMER')")
+public ApiResponse<InvoiceResponse> getMyInvoice(
+        @PathVariable String id,
+        @AuthenticationPrincipal Jwt jwt) {
+
+    String customerId = jwt.getSubject();
+
+    return ApiResponse.<InvoiceResponse>builder()
+            .result(invoiceService.getInvoiceForCustomer(id, customerId))
+            .build();
+}
 
     // Khach hang bam "Thanh toan online" tren hoa don -> BE tra ve URL VNPay,
     // FE redirect trinh duyet/webview toi day de khach quet QR hoac nhap the.
