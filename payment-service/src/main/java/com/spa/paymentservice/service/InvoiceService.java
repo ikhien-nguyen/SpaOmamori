@@ -138,6 +138,43 @@ public InvoiceResponse getInvoiceForCustomer(
 
     return invoiceMapper.toInvoiceResponse(invoice);
 }
+    public VnPayPaymentUrlResponse createVnPayPaymentUrlForCustomer(
+            String invoiceId,
+            String customerId,
+            HttpServletRequest httpRequest) {
+
+        Invoice invoice = invoiceRepository.findById(invoiceId)
+                .orElseThrow(() ->
+                        new AppException(ErrorCode.INVOICE_NOT_EXISTED)
+                );
+
+        // Customer chỉ được thanh toán hóa đơn thuộc về chính mình.
+        if (invoice.getCustomerId() == null
+                || !invoice.getCustomerId().equals(customerId)) {
+            throw new AppException(
+                    ErrorCode.PAYMENT_ACCESS_DENIED
+            );
+        }
+
+        // Không sinh URL mới cho hóa đơn đã thanh toán / đã hủy.
+        if (invoice.getStatus() != InvoiceStatus.PENDING_PAYMENT) {
+            throw new AppException(
+                    ErrorCode.INVOICE_NOT_PENDING
+            );
+        }
+
+        var result =
+                vnPayService.createPaymentUrl(
+                        invoice,
+                        httpRequest
+                );
+
+        return VnPayPaymentUrlResponse.builder()
+                .paymentUrl(result.paymentUrl())
+                .txnRef(result.txnRef())
+                .build();
+    }
+
     // Khach hang tu thanh toan online: sinh URL VNPay (chua QR + cac hinh
     // thuc thanh toan khac) cho hoa don dang "Cho thanh toan".
     public VnPayPaymentUrlResponse createVnPayPaymentUrl(String invoiceId, HttpServletRequest httpRequest) {

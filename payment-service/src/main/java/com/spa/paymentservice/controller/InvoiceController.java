@@ -103,6 +103,28 @@ public ApiResponse<InvoiceResponse> getMyInvoice(
             .build();
 }
 
+// Customer thanh toán online hóa đơn của chính mình.
+// customerId lấy từ JWT subject, không nhận từ phía client.
+@PostMapping("/me/{id}/vnpay/create")
+@PreAuthorize("hasAuthority('CUSTOMER')")
+public ApiResponse<VnPayPaymentUrlResponse> createMyVnPayPaymentUrl(
+        @PathVariable String id,
+        @AuthenticationPrincipal Jwt jwt,
+        HttpServletRequest httpRequest) {
+
+    String customerId = jwt.getSubject();
+
+    return ApiResponse.<VnPayPaymentUrlResponse>builder()
+            .result(
+                    invoiceService.createVnPayPaymentUrlForCustomer(
+                            id,
+                            customerId,
+                            httpRequest
+                    )
+            )
+            .build();
+}
+
     // Khach hang bam "Thanh toan online" tren hoa don -> BE tra ve URL VNPay,
     // FE redirect trinh duyet/webview toi day de khach quet QR hoac nhap the.
     @PostMapping("/{id}/vnpay/create")

@@ -20,10 +20,10 @@ appointment-service:
 # khai bao o day - phai vao trang quan tri merchant sandbox de khai bao rieng,
 # vi VNPay khong nhan IPN URL nhu 1 tham so gui kem request thanh toan.
 vnpay:
-  tmn-code: "8EM7MK9Z"
-  hash-secret: "RIUKGGS7LA415S2M27B662IVUAG7W6LD"
-  pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
-  return-url: http://localhost:8086/payments/vnpay/return
+  tmn-code: ${VNPAY_TMN_CODE:}
+  hash-secret: ${VNPAY_HASH_SECRET:}
+  pay-url: ${VNPAY_PAY_URL:https://sandbox.vnpayment.vn/paymentv2/vpcpay.html}
+  return-url: ${VNPAY_RETURN_URL:http://localhost:8086/payments/vnpay/return}
 
 spring:
   application:
